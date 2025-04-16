@@ -30,7 +30,7 @@ The insights generated will help the Revenue team adjust pricing and inventory d
 The dataset contains historical booking records from INN Hotels and is used to build a predictive model for reservation cancellations. Each row corresponds to a **single hotel booking made by a customer**. The dataset includes **36,275 rows** and **19 columns**, combining both categorical and numerical variables. The final cleaned version contains **no missing values or duplicate entries**, making it suitable for supervised classification tasks.
 
 **Summary of the key fields:**
-<img src="https://github.com/user-attachments/assets/381c13ec-5105-481f-837f-57d97016ca20" alt="INN Hotel Logo" width="400" align="right"> 
+<img src="https://github.com/user-attachments/assets/381c13ec-5105-481f-837f-57d97016ca20" alt="INN Hotel Logo" width="380" align="right"> 
 
 - `Booking_ID`: Unique identifier for each reservation  
 - `no_of_adults`, `no_of_children`: Guest composition  
@@ -44,9 +44,30 @@ The dataset contains historical booking records from INN Hotels and is used to b
 - `no_of_special_requests`: Number of custom requests  
 - `booking_status`: Target variable indicating cancellation (Yes/No)
 
----
 
+
+
+
+---
 # Exploratory Data Analysis (EDA)
 
+### Univariate Analysis 
+
+**Lead Time** 
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/81622a50-258e-4671-8ae5-c78bcc755eb7" width="600"/>
+</div>
+
+lead_time measures the number of days between the booking date and the arrival date.
+
+The distribution is right-skewed, with most bookings made within 0 to 50 days. The mode is around 0–10 days, indicating a high volume of last-minute reservations.
+
+The median is ~62 days, but the boxplot reveals a long right tail and several outliers beyond 300 days, likely from early planners or group bookings.
+
+This skew suggests the potential need for log transformation or binning before modeling.
+
+Interpretation:
+Short lead times may reflect impulsive bookings, potentially linked to higher cancellation risk. This feature is likely to play a significant role in predicting cancellations and should be examined against booking_status.
 
 
