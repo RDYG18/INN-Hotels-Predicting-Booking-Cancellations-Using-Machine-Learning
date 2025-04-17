@@ -107,3 +107,16 @@ Most bookings fall within a competitive pricing range, with higher prices occurr
 <div align="center">
   <img src="https://github.com/user-attachments/assets/32e4a1ed-745a-411c-8f09-8340f8e80479" width="500"/>
 </div>
+
+### Bivariate Analysis
+
+
+lead time 
+
+average price per room 
+
+number of especial reques 
+
+arrival month 
+
+
