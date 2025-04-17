@@ -90,4 +90,20 @@ Given the dominance of online bookings, this channel could play a critical role 
 
 ---
 
+**Average Price per Room**
 
+The avg_price_per_room represents the average nightly rate charged for each booking, in euros.
+
+- The distribution is slightly right-skewed, with most room prices concentrated between 60 and 140 euros.
+
+- The median price is just under 105 euros, while a small number of high-value outliers extend beyond 300 euros, as seen in the boxplot.
+
+- There are also minor spikes near 0 and at common rounded values, possibly from promotional rates or encoding artifacts.
+
+**Interpretation:**
+
+Most bookings fall within a competitive pricing range, with higher prices occurring less frequently. Price sensitivity may influence cancellation behavior, especially for higher-rate bookings. For this reason this variable could be relevant for modeling how price impacts cancellation likelihood and revenue recovery strategies.
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/32e4a1ed-745a-411c-8f09-8340f8e80479" width="500"/>
+</div>
