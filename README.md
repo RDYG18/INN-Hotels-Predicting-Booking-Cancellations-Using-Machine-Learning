@@ -110,13 +110,61 @@ Most bookings fall within a competitive pricing range, with higher prices occurr
 
 ### Bivariate Analysis
 
+**Average Price per Room vs Market Segment Type**
 
-lead time 
+The boxplot compares the distribution of avg_price_per_room across different market_segment_type categories.
 
-average price per room 
+- Online and Offline segments show similar price ranges, but Online bookings have higher median prices and more extreme high end outliers above 200 EUR, suggesting broader price variation in that channel.
 
-number of especial reques 
+- Corporate bookings are more concentrated, with moderate prices and fewer outliers.
 
-arrival month 
+- Aviation prices cluster tightly around ~100 EUR with minimal variation, likely reflecting fixed rate contracts.
 
+- Complementary bookings have a median close to 0 EUR, consistent with free or promotional stays.
+
+**Interpretation:**
+
+Room pricing varies significantly across booking channels. The Online segment shows the widest variability, which may reflect flexible pricing algorithms or discount driven behavior. These pricing differences may influence both customer profiles and cancellation likelihood, and should be considered when segmenting the model.
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/50b0053b-0688-430e-8b44-bac163029a92" width="500"/>
+</div>
+
+**Special Requests vs. Booking Status**
+
+This stacked bar chart shows the proportion of canceled (1) and not canceled (0) bookings by number of special requests made.
+
+- Guests with zero special requests have the highest cancellation rate, with over 40% of those bookings ending in cancellation.
+
+- As the number of special requests increases, the cancellation rate drops. From 3 or more requests, no cancellations are observed.
+
+- There’s a clear negative correlation: more engagement via requests appears to indicate stronger booking intent and lower risk of cancellation.
+
+**Interpretation:**
+
+Customers who make special requests are more invested in their stay and less likely to cancel. This variable is a strong behavioral indicator and should be treated as an important feature in the predictive model. It may also guide hotel staff in identifying low-risk guests for personalized service or upselling.
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/d197c73e-4c17-4209-813a-2277af98d0a4" width="500"/>
+</div> 
+
+**Month of Arrival vs. Booking Status**
+
+This stacked bar chart shows the proportion of canceled and non-canceled bookings by month of arrival where canceled (1) and not canceled (0).
+
+- **July (7)** shows the highest cancellation rate, with nearly 45% of bookings canceled.
+
+- Summer months (**June, July, August**) generally reflect elevated cancellation patterns, possibly linked to vacation flexibility or last minute plans.
+
+- In contrast, winter months particularly **December** and **January** have lower cancellation rates, dropping below 20%.
+
+- A clear seasonal pattern is observed: cancellations decrease in colder months, potentially due to more stable, purpose driven bookings like business travel or holidays.
+
+**Interpretation:**
+
+Seasonality appears to influence booking reliability. Bookings in peak vacation months carry higher cancellation risk, making arrival_month a valuable feature for forecasting demand volatility and overbooking strategies.
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/b1de6d05-0f59-42c1-8fcc-4ba77295e5c5" width="700"/>
+</div>
 
