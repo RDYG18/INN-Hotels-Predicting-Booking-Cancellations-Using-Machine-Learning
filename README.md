@@ -66,6 +66,28 @@ The variable measures the number of days between the booking date and the arriva
 Short lead times may reflect impulsive bookings, potentially linked to higher cancellation risk. This feature is likely to play a significant role in predicting cancellations and should be examined against booking_status.
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/81622a50-258e-4671-8ae5-c78bcc755eb7" width="600"/>
+  <img src="https://github.com/user-attachments/assets/81622a50-258e-4671-8ae5-c78bcc755eb7" width="500"/>
 </div>
+
+--- 
+
+**Market Segment Type**
+
+- The variable indicates the source channel through which the booking was made.
+
+- The majority of reservations came from the Online segment 23,214 bookings, followed by Offline 10,528. Together, they represent over 90% of the customers.
+
+- Given their limited volume, both Corporate bookings and the Complementary and Aviation channels will be discussed further in the dedicated sections below.
+
+- The distribution suggests a strong dependency on online platforms, which may influence booking behavior and cancellation trends.
+
+**Interpretation:**
+Given the dominance of online bookings, this channel could play a critical role in cancellation patterns. It should be further explored in a bivariate analysis with booking_status to assess whether certain channels are more prone to cancellations than others.
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/024d62a5-0534-4c02-81bc-57745b315f0b" width="500"/>
+</div>
+
+---
+
 
