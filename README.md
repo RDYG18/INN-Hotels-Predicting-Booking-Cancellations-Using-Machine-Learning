@@ -224,11 +224,20 @@ To improve model the multicollinearity was assessed using the Variance Inflation
 
 **Final Model**
 
-After resolving multicollinearity and removing statistically insignificant features based on p-values, a new logistic regression model was trained using the reduced set of predictors.The model achieved a accuracy of 80.57%, precision 73.94%, recall 63.33% and F1-Score of 68.23%
+After resolving multicollinearity and removing statistically insignificant features based on p-values, a new logistic regression model was trained using the reduced set of predictors.The model achieved a accuracy of 80.57%, precision 73.94%, recall 63.33% and F1-Score of 68.23%.
+
+<div style="display: flex; justify-content: center; gap: 20px;">
+
+  <img src="https://github.com/user-attachments/assets/bab10a2a-542c-4571-8429-831db17b5991" width="500"/>
+
+  <img src="https://github.com/user-attachments/assets/e8bcf8e2-e762-49d6-934a-d1153991cbfb" width="350"/>
+
+</div>
 
 **Coefficients to Odds**
 
 To make the logistic regression results more interpretable, the model coefficients were converted from log-odds to odds ratios using the exponential transformation.This allows us to understand the impact of each predictor on the likelihood of cancellation in percentage terms.
+
 
 ---
 
@@ -251,6 +260,18 @@ By adjusting the threshold from the default 0.5 to a more optimal value 0.37–0
   <img src="https://github.com/user-attachments/assets/136a04e7-ec1d-43fd-8631-1d722240862e" width="400"/>
   <img src="https://github.com/user-attachments/assets/69bb651f-9a8e-49a1-a236-cf986250c75f" width="400"/>
 </p>
+
+**Model performance summary**
+
+After evaluating different thresholds, the model with 0.37 achieved the highest recall in the test performance, making it ideal for capturing the most cancellations. However, as a Data Scientist, I would recommend using the 0.42 threshold instead, as it offers a more balanced trade-off between recall and precision, making it better suited for real-world decision-making where both false positives and false negatives carry a cost.
+
+
+  <img src="https://github.com/user-attachments/assets/96a0c11c-a09a-4010-b092-95b048cded6b" width="500"/>
+
+  <img src="https://github.com/user-attachments/assets/d4cdf8da-92bf-496a-a052-42e52f125211" width="500"/>
+
+
+
 
 
 
