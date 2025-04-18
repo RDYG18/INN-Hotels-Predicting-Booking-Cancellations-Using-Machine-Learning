@@ -307,8 +307,43 @@ Before applying pre-pruning techniques to reduce overfitting, we analyzed the re
 
 ## Pruning the tree**
 
-**Pre-Prunning**
+**Model Optimization**
+
+To address overfitting in the initial Decision Tree model, two pruning techniques were applied:
+
+**Pre-Pruning (Grid Search):**
+A hyperparameter tuning process using GridSearchCV was conducted over parameters such as max_depth, min_samples_split, and min_samples_leaf. The best configuration (e.g., max_depth=6) improved generalization, resulting in a test F1-score of 0.75.
+
+**Post-Pruning (Cost-Complexity Pruning):**
+A post-pruning strategy was implemented by analyzing the trade-off between tree complexity and performance using the cost-complexity parameter ccp_alpha. The optimal value (ccp_alpha ≈ 0.00013) was selected based on the highest test F1-score (0.808) and recall (0.853), leading to a more robust and simplified model.
 
 
+**Post-pruning** proved to be the best option, delivering the strongest trade-off between model complexity and predictive power. It outperformed both the original and pre-pruned versions by offering improved generalization and higher recall—crucial for cancellation prediction scenarios where false negatives carry significant cost.
 
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/b9aade7b-dea2-44a2-a269-21981223f330" width="500"/>
+</div>
+
+---
+
+**Final Feature Importances Summary**
+
+At the end of the Decision Tree modeling process, the most influential features for predicting booking cancellations were:
+
+- Lead time, by far the most important predictor, suggests that bookings made well in advance are more prone to cancellation.
+
+- Market segment type (Online) and average price per room also played key roles, highlighting customer profile and pricing sensitivity.
+
+- Other relevant variables included the number of special requests, arrival month, and booking timing features (arrival date, week/weekend nights).
+
+This ranking provides valuable insight into which attributes are most critical in cancellation behavior, supporting both strategic pricing and customer targeting decisions.
+
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/6e5eb3ba-5c7c-455c-8d6b-e144221174d8" width="500"/>
+</div>
+
+## Insights   
  
+## Recomendations
