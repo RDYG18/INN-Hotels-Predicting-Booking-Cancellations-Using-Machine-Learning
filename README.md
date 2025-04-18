@@ -224,6 +224,34 @@ To improve model the multicollinearity was assessed using the Variance Inflation
 
 **Final Model**
 
-After resolving multicollinearity and removing statistically insignificant features based on p-values, a new logistic regression model was trained using the reduced set of predictors.
+After resolving multicollinearity and removing statistically insignificant features based on p-values, a new logistic regression model was trained using the reduced set of predictors.The model achieved a accuracy of 80.57%, precision 73.94%, recall 63.33% and F1-Score of 68.23%
 
-The model achieved a accuracy of 80.57%, precision 73.94%, recall: 63.33% and F1-Score of 68.23%
+**Coefficients to Odds**
+
+To make the logistic regression results more interpretable, the model coefficients were converted from log-odds to odds ratios using the exponential transformation.This allows us to understand the impact of each predictor on the likelihood of cancellation in percentage terms.
+
+---
+
+**Threshold Optimization and Model Refinement**
+
+<div align="justify">
+
+To improve the model's ability to correctly identify canceled bookings, we explored threshold tuning using both the ROC Curve and the Precision-Recall Curve. Logistic regression models predict probabilities, and by default, a **threshold of 0.5** is used to classify outcomes. However, this threshold may not yield the best balance between precision and recall particularly in imbalanced datasets or use cases where one metric is more critical.
+
+First we plotted the ROC curve, which showed an AUC of 0.86, indicating strong separability between canceled and non canceled bookings. By analyzing the curve, we identified an **optimal threshold** of approximately **0.37**, where the true positive rate was significantly improved without drastically increasing the false positive rate.
+
+To further validate the threshold, we used the **Precision Recall Curve**, which is useful when dealing with imbalanced classes like ours. The curve clearly showed the tradeoff between precision and recall, and we identified an additional **optimal threshold** at **0.42**, where recall was maximized without sacrificing too much precision.
+
+By adjusting the threshold from the default 0.5 to a more optimal value 0.37–0.42, the **model's recall** our key metric in this business case **improved substantially**, allowing the hotel to better anticipate booking cancellations, which is a key priority.
+
+
+</div>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/136a04e7-ec1d-43fd-8631-1d722240862e" width="400"/>
+  <img src="https://github.com/user-attachments/assets/69bb651f-9a8e-49a1-a236-cf986250c75f" width="400"/>
+</p>
+
+
+
+ 
