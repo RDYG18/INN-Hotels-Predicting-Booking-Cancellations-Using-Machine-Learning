@@ -276,6 +276,7 @@ After evaluating different thresholds, the model with 0.37 achieved the highest 
 
 Before training the Decision Tree model, categorical features were, the dataset was preprocessed by applying **one-hot encoding** to categorical features (with drop_first=True) and splitting the data into training 70% and test 30% sets. Despite high performance on both sets, the significant gap between training and test results especially the near perfect metrics on the training set indicates **overfitting**. For this reason, we will apply pre-pruning to improve the model. 
 
+
 <div style="display: flex; justify-content: center; gap: 20px;">
 
   <img src="https://github.com/user-attachments/assets/09aca7de-fc22-4af1-9873-ad8aec26236a" width="400"/>
@@ -284,7 +285,29 @@ Before training the Decision Tree model, categorical features were, the dataset 
 
 </div>
 
+---
 
+**Important features**
+
+Before applying pre-pruning techniques to reduce overfitting, we analyzed the relative importance of features in the unpruned Decision Tree model. The most influential variables in predicting booking cancellations were:
+
+- **lead_time**: By far the most important feature, indicating that the number of days between booking and arrival is a strong predictor of cancellation likelihood.
+
+- **avg_price_per_room**: Price dynamics likely signal demand peaks or premium bookings, influencing cancellation behavior.
+
+- **market_segment_type_Online**: Online bookings showed a high contribution, consistent with trends seen in earlier exploratory analysis.
+
+- **arrival_date** and **no_of_special_requests** also contributed moderately to the model's decisions.
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/472b2f50-d371-4828-8d5f-4ce33a080fcb" width="500"/>
+</div>
+
+---
+
+## Pruning the tree**
+
+**Pre-Prunning**
 
 
 
