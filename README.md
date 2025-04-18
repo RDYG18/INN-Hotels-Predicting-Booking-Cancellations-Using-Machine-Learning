@@ -168,3 +168,62 @@ Seasonality appears to influence booking reliability. Bookings in peak vacation 
   <img src="https://github.com/user-attachments/assets/b1de6d05-0f59-42c1-8fcc-4ba77295e5c5" width="700"/>
 </div>
 
+---
+
+## Data Preprocessing
+
+**Outlier Check**
+
+We chose not to remove or cap these outliers, as they carry meaningful signals about customer behavior and hotel operations.An exception was made for the no_of_adults variable. Based on business logic, a reservation should include at least one adult. Therefore, values of 0 were considered unrealistic and were replaced with the mode to reflect more plausible scenarios.
+
+Retaining the remaining outliers allows the model to better capture real-world booking behavior. Additionally, models such as Decision Trees are inherently robust to outliers, making them well-suited to handle this type of variability without distortion.For these reasons, outliers were preserved as part of the training data.
+
+**My interpretation:**
+- High lead times may correspond to early-planned group or seasonal reservations.
+- Extreme price values could reflect peak-season rates or luxury room types.
+- Multiple special requests or prior cancellations could indicate loyal but demanding customers.
+- Outlier counts in previous bookings may come from frequent guests or business travelers
+
+<div style="display: flex; justify-content: center; gap: 20px;">
+
+  <img src="https://github.com/user-attachments/assets/4f263720-86ef-4bc5-a6da-a206b068dd24" width="500"/>
+
+  <img src="https://github.com/user-attachments/assets/ad5f63a6-fa8c-4cfe-8b97-1a4300efe337" width="400"/>
+
+</div>
+
+---
+
+## Modeling Logistic Regression
+
+**Data Preparation**
+
+Before training the logistic regression model, the dataset was preprocessed by applying **one-hot encoding** to categorical features (with drop_first=True) and splitting the data into training 70% and test 30% sets. The target variable was **booking_status** (1 = Canceled, 0 = Not Canceled). The class distribution remained consistent across both sets 33% cancellations, ensuring a balanced and representative split for modeling.
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/b086ad68-b04d-4e55-81e0-6e10a744640a" width="300"/>
+</div>
+
+--- 
+
+## Building Logistic Regression Model
+
+The initial results showed an accuracy of 80.6%, a recall of 63.4%, and an F1-score of 68.3% on the training set. While the model demonstrated solid performance, the presence of multicollinearity and high p-values in several features suggested the need of treatment. 
+
+<div style="display: flex; justify-content: center; gap: 20px;">
+
+  <img src="https://github.com/user-attachments/assets/33beaf2e-8be4-4183-8426-d6ef8c6989d3" width="500"/>
+  
+  <img src="https://github.com/user-attachments/assets/c7bbbf73-f825-4de7-8302-02b012826cea" width="300"/>
+  
+</div>
+
+**Test for multicollinearity and treat high p-values**
+
+To improve model the multicollinearity was assessed using the Variance Inflation Factor (VIF). Several dummy variables, particularly within the market_segment_type feature, showed high VIF values (above 60), indicating strong linear dependencies. In parallel, backward elimination was applied using p-values from the logistic regression summary to remove statistically insignificant variables (p > 0.05). This iterative process reduced the feature set to only those with meaningful contribution to the model, resolving multicollinearity and improving overall model.  
+
+**Final Model**
+
+After resolving multicollinearity and removing statistically insignificant features based on p-values, a new logistic regression model was trained using the reduced set of predictors.
+
+The model achieved a accuracy of 80.57%, precision 73.94%, recall: 63.33% and F1-Score of 68.23%
