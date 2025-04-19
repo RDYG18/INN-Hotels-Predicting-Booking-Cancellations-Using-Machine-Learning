@@ -345,5 +345,64 @@ This ranking provides valuable insight into which attributes are most critical i
 </div>
 
 ## Insights   
+
+Guests who book far in advance are more likely to cancel
+Customers who make their reservations more than 3 months ahead tend to cancel much more often than those who book closer to their stay. These early bookings are riskier and could affect occupancy forecasts if not managed proactively.
+
+Online bookings have the highest cancellation rates
+Reservations made through online platforms are significantly more likely to be canceled compared to other channels like Corporate or Offline. This suggests the need to reassess cancellation policies or deposit requirements for online customers.
+
+Higher room prices are linked to more cancellations
+When the average room price goes up, the chance of cancellation also increases. This could be due to last-minute comparison shopping or unrealistic expectations. High-value bookings may need extra confirmation steps or flexible pricing options.
+
+Customers who make special requests are more likely to show up
+Guests who request things like extra beds, late check-out, or food preferences are showing stronger intent to stay. These bookings are far less likely to be canceled — and could be prioritized for upselling or loyalty offers.
+
+Repeated customers are very reliable
+Loyal or returning guests almost never cancel their bookings. This group can be considered highly trustworthy and is ideal for targeted promotions, upgrades, or loyalty rewards.
+
+Decision Tree models outperform Logistic Regression for this problem
+While both models delivered solid results, the Decision Tree with pruning achieved the best balance:
+
+It correctly identified 85% of cancellations.
+
+It reached an F1 score of 0.81, meaning it balanced precision and recall better than other options.
+
+It avoided overfitting and was easier to interpret for business use.
  
 ## Recomendations
+Reconfirm or pre-authorize high lead time bookings
+Bookings made more than 90 days in advance are over 3 times more likely to cancel. These should trigger automated reconfirmation emails or require a partial deposit, especially during high-demand periods, to reduce last-minute dropouts and improve forecasting.
+
+Strengthen cancellation policies for online bookings
+Online channel users cancel more frequently — representing over 60% of total cancellations. To mitigate this:
+
+Offer non-refundable discounts or perks (e.g., free breakfast).
+
+Introduce stricter cancellation terms (e.g., no free cancellation within 7 days) for online reservations.
+
+Use targeted messaging to reinforce commitment during the booking flow.
+
+Flag risky bookings with high price and no engagement
+Bookings with above-average room prices (>€130) but no special requests had a cancellation rate ~30% higher than the dataset average. Combine pricing data and guest engagement (e.g., requests, preferences) to flag and follow up on bookings with a high risk of cancellation.
+
+Protect high-value customers through loyalty incentives
+Repeated guests showed 93% lower odds of cancellation. These customers should be prioritized with:
+
+Exclusive rates or flexible policies.
+
+Personalized offers (e.g., early check-in, upgrades).
+
+Direct booking incentives to retain loyalty and reduce reliance on OTAs.
+
+Use model predictions to inform overbooking and staffing
+The post-pruned Decision Tree model can correctly anticipate 85% of cancellations. Integrate it into your booking platform to:
+
+Dynamically adjust overbooking levels.
+
+Improve housekeeping and front-desk staffing plans based on cancellation likelihood.
+
+Reduce unoccupied rooms caused by unanticipated no-shows.
+
+Focus marketing efforts on medium lead-time windows
+Guests booking 2–6 weeks in advance showed the lowest cancellation risk. Target this segment through seasonal campaigns, newsletter offers, or retargeting ads, optimizing both occupancy and conversion stability.
