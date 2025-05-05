@@ -4,30 +4,54 @@
   <img src="https://github.com/user-attachments/assets/fa0b7553-7901-482a-8b84-598e7a3201fb" width="500"/>
 </p>
 
+## Table of Contents
 
+- [Project Background](#project-background)
+- [Executive Summary](#executive-summary)
+- [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
+- [Model Building ](#model-building)
+  - [Model building (original data)](#model-building-original-data)
+  - [Model building oversampled data (SMOTE)](#model-building-oversampled-data-smote)
+  - [Model building undersampled data](#model-building-undersampled-data)
+- [Evaluation and Optimization ](#evaluation-and-optimization)
+  - [Hyperparameter Tuning comparison](#hyperparameter-tuning-comparison)
+  - [Final Model Evaluation on Test Set ](#final-model-evaluation-on-test-set)
+  - [Future importances](#future-importances)
+  - [Pipeline Evaluation](#pipeline-evaluation)
+- [Insights](#insights)
+- [Business Recommendations](#business-recommendations)
+- [Assumptions & Limitations](#assumptions--limitations)
 
-## Company Context  
+## Project Background 
 
-As a Data Scientist at **INN Hotels**, a hotel group operating across Portugal, I was brought in to address an operational challenge affecting revenue: a high rate of booking cancellations. These cancellations often happen at the last minute and are facilitated by flexible online policies, which while attractive to guests, lead to revenue loss and increased operational costs for the hotel.
+<div align="justify">
+INN Hotels Group, a hotel chain in Portugal, faced rising operational costs due to frequent booking cancellations particularly last minute ones resulting in unoccupied rooms, higher distribution expenses, and lower profit margins.
 
-The **Revenue Management and Operations teams** raised concerns after noticing an uptick in unoccupied rooms that were previously reserved. These no-shows and cancellations impact multiple areas: unutilized room inventory, last-minute discounting, and resource allocation for guest arrangements. With most reservations now occurring through online channels, the hotel needed a data-driven solution to anticipate cancellations and take preventive action.
+As part of the Data Science team, I collaborated with Revenue Management and Guest Services to develop a machine learning model that predicts the likelihood of cancellations using historical booking data. The model prioritized minimizing false negatives to prevent revenue loss, while also controlling false positives to optimize room allocation.
+
+This solution allowed the hotel to anticipate cancellations, implement proactive overbooking strategies, and design policies that improved occupancy and profitability.
+
+</div>
 
 ---
 
-## Objective  
+## Executive Summary
 
-To build a predictive model that identifies in advance which bookings are likely to be canceled, allowing INN Hotels’ **Revenue Management and Operations teams** to proactively manage inventory, reduce financial losses, and improve operational planning. Specifically, the project aims to:
+<div align="justify">
+The model identified lead time, booking channel, and special requests as the most impactful predictors of cancellations. Longer lead times slightly increase cancellation risk, while online bookings are over five times more likely to be canceled than offline ones. In contrast, guests who make special requests, especially two or more, are significantly less likely to cancel, indicating stronger intent. Repeated guests also show much higher reliability, with an 89% lower chance of canceling. Seasonality plays a role as well: cancellations are more common early in the year and less likely toward the end of the year. These insights can support targeted strategies to reduce cancellation rates and improve booking quality.
+</div>
 
-- ¿What are the main factors that influence whether a booking is likely to be canceled?  
-- ¿Can we accurately predict which reservations are at high risk of cancellation before check-in?  
-- ¿How can the insights from the model inform overbooking strategies, refund policies, and room reallocation decisions?
 
-The insights generated will help the Revenue team adjust pricing and inventory decisions, while the Operations team can better allocate resources and minimize disruptions caused by last-minute cancellations.
+
+
 
 ---
-## Data Structure 
+## Exploratory Data Analysis (EDA)
 
-The dataset contains historical booking records from INN Hotels and is used to build a predictive model for reservation cancellations. Each row corresponds to a **single hotel booking made by a customer**. The dataset includes **36,275 rows** and **19 columns**, combining both categorical and numerical variables. The final cleaned version contains **no missing values or duplicate entries**, making it suitable for supervised classification tasks.
+<div align="justify">
+  
+The dataset contains historical booking records from INN Hotels and is used to build a predictive model for reservation cancellations. Each row represents an **individual hotel booking made by a customer**. The dataset consists of **36,275 rows** and **19 columns**, covering a mix of categorical and numerical features.The final cleaned version of the dataset contains no missing values or duplicate records, ensuring it is ready for supervised classification.
+</div>
 
 **Data Dictionary:**
 <img src="https://github.com/user-attachments/assets/381c13ec-5105-481f-837f-57d97016ca20" alt="INN Hotel Logo" width="380" align="right"> 
@@ -49,7 +73,6 @@ The dataset contains historical booking records from INN Hotels and is used to b
 
 
 ---
-# Exploratory Data Analysis (EDA)
 
 ### Univariate Analysis 
 
