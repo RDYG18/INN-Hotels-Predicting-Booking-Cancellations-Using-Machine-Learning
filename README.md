@@ -78,15 +78,21 @@ The dataset contains historical booking records from INN Hotels and is used to b
 
 **Lead Time** 
 
-The variable measures the number of days between the booking date and the arrival date.
+Lead time represents the number of days between the booking date and the arrival date.
 
-- The distribution is right-skewed, with most bookings made within 0 to 50 days. The mode is around 0–10 days, indicating a **high volume of last-minute reservations**.
+- The distribution is heavily right-skewed, with the majority of bookings occurring within the first **100 days**.
 
-- The median is 62 days, but the boxplot reveals a long right tail and several outliers beyond 300 days, likely from **early planners** or **group booking**s.
+- The most frequent bookings occur between **0 and 10 days**, suggesting a large share of last minute reservations.
+
+- The median lead time (the green dashed line) is approximately **62 days**.
+
+- Several outliers beyond 300 days likely represent **early planners** or **group bookings**.
 
 **Interpretation:**
 
-Short lead times may reflect impulsive bookings, potentially linked to higher cancellation risk. This feature is likely to play a significant role in predicting cancellations and should be examined against booking_status.
+Shorter lead times may reflect impulsive or flexible bookings, which are more likely to be canceled. Given its distribution and behavioral implications, lead time is expected to be a key variable in predicting cancellation outcomes.
+
+
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/81622a50-258e-4671-8ae5-c78bcc755eb7" width="500"/>
@@ -96,16 +102,16 @@ Short lead times may reflect impulsive bookings, potentially linked to higher ca
 
 **Market Segment Type**
 
-- The variable indicates the source channel through which the booking was made.
+The variable indicates the source channel through which the booking was made.
 
-- The majority of reservations came from the Online segment 23,214 bookings, followed by Offline 10,528. Together, they represent over 90% of the customers.
+- The **Online** segment dominates the dataset with **23,214 bookings**, followed by the **Offline** segment with **10,528**. Together, these two channels account for over **90% of all bookings**.
 
-- Given their limited volume, both Corporate bookings and the Complementary and Aviation channels will be discussed further in the dedicated sections below.
-
-- The distribution suggests a strong dependency on online platforms, which may influence booking behavior and cancellation trends.
+- **Corporate, Complementary**, and **Aviation** segments represent a very small share of bookings (less than 10%).
+ 
+- The distribution suggests a strong dependency on **online platforms**, which may influence booking behavior and cancellation trends.
 
 **Interpretation:**
-Given the dominance of online bookings, this channel could play a critical role in cancellation patterns. It should be further explored in a bivariate analysis with booking_status to assess whether certain channels are more prone to cancellations than others.
+Given the dominance of online bookings, this channel could play a critical role in cancellation patterns.
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/024d62a5-0534-4c02-81bc-57745b315f0b" width="500"/>
@@ -115,17 +121,19 @@ Given the dominance of online bookings, this channel could play a critical role 
 
 **Average Price per Room**
 
-The avg_price_per_room represents the average nightly rate charged for each booking, in euros.
+The variable represents the average nightly rate charged for each booking, in euros.
 
-- The distribution is slightly right-skewed, with most room prices concentrated between 60 and 140 euros.
+- The distribution is right-skewed, with most prices falling between **60 and 140 euros**.
 
-- The median price is just under 105 euros, while a small number of high-value outliers extend beyond 300 euros, as seen in the boxplot.
+- The **median price** is just below **€105**, as indicated by the green dashed line.
 
-- There are also minor spikes near 0 and at common rounded values, possibly from promotional rates or encoding artifacts.
+- A small number of high price outliers exceed **€300**, as shown in the boxplot, likely corresponding to **luxury or peak season** bookings.
+
+- Minor spikes around €0 and other rounded values may reflect promotional rates or data encoding artifacts.
 
 **Interpretation:**
 
-Most bookings fall within a competitive pricing range, with higher prices occurring less frequently. Price sensitivity may influence cancellation behavior, especially for higher-rate bookings. For this reason this variable could be relevant for modeling how price impacts cancellation likelihood and revenue recovery strategies.
+Most bookings are priced within a competitive range, while higher priced stays are relatively rare. Since more expensive bookings may lead to greater hesitation or stricter refund policies, price sensitivity could influence cancellation behavior.
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/32e4a1ed-745a-411c-8f09-8340f8e80479" width="500"/>
@@ -135,37 +143,38 @@ Most bookings fall within a competitive pricing range, with higher prices occurr
 
 **Average Price per Room vs Market Segment Type**
 
-The boxplot compares the distribution of avg_price_per_room across different market_segment_type categories.
+The boxplot compares the distribution of average room prices across different booking channels.
 
-- Online and Offline segments show similar price ranges, but Online bookings have higher median prices and more extreme high end outliers above 200 EUR, suggesting broader price variation in that channel.
+- Online and Offline segments show comparable price ranges, but Online bookings have a higher median and a wider spread, with many outliers above €200, indicating greater price variability.
 
-- Corporate bookings are more concentrated, with moderate prices and fewer outliers.
+- Corporate bookings are more concentrated around mid-range prices, with fewer extreme values, suggesting negotiated or standardized rates.
 
-- Aviation prices cluster tightly around ~100 EUR with minimal variation, likely reflecting fixed rate contracts.
+- Aviation prices are tightly clustered near €100, showing minimal variation, which is consistent with fixed-rate contracts for airline crew or partners.
 
-- Complementary bookings have a median close to 0 EUR, consistent with free or promotional stays.
+- Complementary bookings have a median close to €0, reflecting free stays or promotional offers.
 
 **Interpretation:**
 
-Room pricing varies significantly across booking channels. The Online segment shows the widest variability, which may reflect flexible pricing algorithms or discount driven behavior. These pricing differences may influence both customer profiles and cancellation likelihood, and should be considered when segmenting the model.
+Room pricing differs significantly across market segments. The Online channel displays the greatest variability, possibly due to dynamic pricing strategies or discount-driven customer behavior. These pricing patterns may influence both guest expectations and the likelihood of cancellations, and should be considered in model segmentation. 
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/50b0053b-0688-430e-8b44-bac163029a92" width="500"/>
 </div>
 
+
 **Special Requests vs. Booking Status**
 
-This stacked bar chart shows the proportion of canceled (1) and not canceled (0) bookings by number of special requests made.
+This stacked bar chart shows the proportion of **canceled (1)** and **not canceled (0)** bookings by number of special requests made.
 
-- Guests with zero special requests have the highest cancellation rate, with over 40% of those bookings ending in cancellation.
+- Guests with zero special requests have the highest cancellation rate, with over **40%** of those bookings ending in cancellation.
 
-- As the number of special requests increases, the cancellation rate drops. From 3 or more requests, no cancellations are observed.
+- As the number of special requests increases, the cancellation rate drops. From **3 or more requests**, no cancellations are observed.
 
 - There’s a clear negative correlation: more engagement via requests appears to indicate stronger booking intent and lower risk of cancellation.
 
 **Interpretation:**
 
-Customers who make special requests are more invested in their stay and less likely to cancel. This variable is a strong behavioral indicator and should be treated as an important feature in the predictive model. It may also guide hotel staff in identifying low-risk guests for personalized service or upselling.
+Customers who make special requests are more invested in their stay and less likely to cancel. This variable is a strong behavioral indicator and should be treated as an important feature in the predictive model. It may also guide hotel staff in identifying low risk guests for personalized service or upselling.
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/d197c73e-4c17-4209-813a-2277af98d0a4" width="500"/>
