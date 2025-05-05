@@ -9,8 +9,9 @@
 - [Project Background](#project-background)
 - [Executive Summary](#executive-summary)
 - [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
+- [Data Preprocessing ](#data-preprocessing)
 - [Model Building ](#model-building)
-  - [Model building (original data)](#model-building-original-data)
+  - [Logistic Regression Model](#logistic-regression-model)
   - [Model building oversampled data (SMOTE)](#model-building-oversampled-data-smote)
   - [Model building undersampled data](#model-building-undersampled-data)
 - [Evaluation and Optimization ](#evaluation-and-optimization)
@@ -182,7 +183,7 @@ Customers who make special requests are more invested in their stay and less lik
 
 **Month of Arrival vs. Booking Status**
 
-This stacked bar chart shows the proportion of canceled and non-canceled bookings by month of arrival where canceled (1) and not canceled (0).
+This stacked bar chart shows the proportion of canceled and non-canceled bookings by month of arrival where **canceled (1)** and **not canceled (0)**.
 
 - **July (7)** shows the highest cancellation rate, with nearly 45% of bookings canceled.
 
@@ -210,12 +211,6 @@ We chose not to remove or cap these outliers, as they carry meaningful signals a
 
 Retaining the remaining outliers allows the model to better capture real-world booking behavior. Additionally, models such as Decision Trees are inherently robust to outliers, making them well-suited to handle this type of variability without distortion.For these reasons, outliers were preserved as part of the training data.
 
-**My interpretation:**
-- High lead times may correspond to early-planned group or seasonal reservations.
-- Extreme price values could reflect peak-season rates or luxury room types.
-- Multiple special requests or prior cancellations could indicate loyal but demanding customers.
-- Outlier counts in previous bookings may come from frequent guests or business travelers
-
 <div style="display: flex; justify-content: center; gap: 20px;">
 
   <img src="https://github.com/user-attachments/assets/4f263720-86ef-4bc5-a6da-a206b068dd24" width="500"/>
@@ -226,7 +221,7 @@ Retaining the remaining outliers allows the model to better capture real-world b
 
 ---
 
-## Modeling Logistic Regression
+## Model Building
 
 **Data Preparation**
 
@@ -238,7 +233,7 @@ Before training the logistic regression model, the dataset was preprocessed by a
 
 --- 
 
-## Building Logistic Regression Model
+## Logistic Regression Model
 
 The initial results showed an accuracy of 80.6%, a recall of 63.4%, and an F1-score of 68.3% on the training set. While the model demonstrated solid performance, the presence of multicollinearity and high p-values in several features suggested the need of treatment. 
 
