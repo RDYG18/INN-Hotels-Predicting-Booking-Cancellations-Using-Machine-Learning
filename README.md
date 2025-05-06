@@ -12,8 +12,10 @@
 - [Data Preprocessing ](#data-preprocessing)
 - [Model Building ](#model-building)
   - [Logistic Regression Model](#logistic-regression-model)
-  - [Model building oversampled data (SMOTE)](#model-building-oversampled-data-smote)
-  - [Model building undersampled data](#model-building-undersampled-data)
+  - [Multicollinearity and Treat High P-values](#multicollinearity-and-treat-high-p-values)
+  - [Final Logistic Model](#final-logistic-model)
+  - [Threshold Optimization](#threshold-optimization)
+  - [Model performance summary](#model-performance-summary)
 - [Evaluation and Optimization ](#evaluation-and-optimization)
   - [Hyperparameter Tuning comparison](#hyperparameter-tuning-comparison)
   - [Final Model Evaluation on Test Set ](#final-model-evaluation-on-test-set)
@@ -22,6 +24,7 @@
 - [Insights](#insights)
 - [Business Recommendations](#business-recommendations)
 - [Assumptions & Limitations](#assumptions--limitations)
+Model performance summary
 
 ## Project Background 
 
@@ -245,11 +248,15 @@ The initial results showed an accuracy of 80.6%, a recall of 63.4%, and an F1-sc
   
 </div>
 
-**Test for multicollinearity and treat high p-values**
+---
+
+## Multicollinearity and Treat High P-values**
 
 To improve model the multicollinearity was assessed using the Variance Inflation Factor (VIF). Several dummy variables, particularly within the market_segment_type feature, showed high VIF values (above 60), indicating strong linear dependencies. In parallel, backward elimination was applied using p-values from the logistic regression summary to remove statistically insignificant variables (p > 0.05). This iterative process reduced the feature set to only those with meaningful contribution to the model, resolving multicollinearity and improving overall model.  
 
-**Final Model**
+---
+
+## Final Logistic Model
 
 After resolving multicollinearity and removing statistically insignificant features based on p-values, a new logistic regression model was trained using the reduced set of predictors.The model achieved a accuracy of 80.57%, precision 73.94%, recall 63.33% and F1-Score of 68.23%.
 
@@ -261,6 +268,8 @@ After resolving multicollinearity and removing statistically insignificant featu
 
 </div>
 
+
+
 **Coefficients to Odds**
 
 To make the logistic regression results more interpretable, the model coefficients were converted from log-odds to odds ratios using the exponential transformation.This allows us to understand the impact of each predictor on the likelihood of cancellation in percentage terms.
@@ -268,18 +277,15 @@ To make the logistic regression results more interpretable, the model coefficien
 
 ---
 
-**Threshold Optimization and Model Refinement**
+## Threshold Optimization
 
 <div align="justify">
 
-To improve the model's ability to correctly identify canceled bookings, we explored threshold tuning using both the ROC Curve and the Precision-Recall Curve. Logistic regression models predict probabilities, and by default, a **threshold of 0.5** is used to classify outcomes. However, this threshold may not yield the best balance between precision and recall particularly in imbalanced datasets or use cases where one metric is more critical.
+To improve the model's ability to detect cancellations, we performed threshold tuning using the ROC Curve and Precision-Recall Curve. While logistic regression defaults to a threshold of 0.5, this value may not be optimal for imbalanced datasets or when recall is a priority.
 
-First we plotted the ROC curve, which showed an AUC of 0.86, indicating strong separability between canceled and non canceled bookings. By analyzing the curve, we identified an **optimal threshold** of approximately **0.37**, where the true positive rate was significantly improved without drastically increasing the false positive rate.
+The ROC Curve (AUC = 0.86) revealed an optimal threshold around 0.37, improving the true positive rate with minimal increase in false positives. The Precision-Recall Curve confirmed this tradeoff, highlighting another suitable threshold at 0.42, where recall was maximized without severely compromising precision.
 
-To further validate the threshold, we used the **Precision Recall Curve**, which is useful when dealing with imbalanced classes like ours. The curve clearly showed the tradeoff between precision and recall, and we identified an additional **optimal threshold** at **0.42**, where recall was maximized without sacrificing too much precision.
-
-By adjusting the threshold from the default 0.5 to a more optimal value 0.37–0.42, the **model's recall** our key metric in this business case **improved substantially**, allowing the hotel to better anticipate booking cancellations, which is a key priority.
-
+Adjusting the threshold to 0.37–0.42 significantly improved recall, our key metric for anticipating cancellations, supporting the hotel’s goal of minimizing revenue loss from no-shows.
 
 </div>
 
@@ -288,7 +294,7 @@ By adjusting the threshold from the default 0.5 to a more optimal value 0.37–0
   <img src="https://github.com/user-attachments/assets/69bb651f-9a8e-49a1-a236-cf986250c75f" width="400"/>
 </p>
 
-**Model performance summary**
+## Model performance summary
 
 After evaluating different thresholds, the model with 0.37 achieved the highest recall in the test performance, making it ideal for capturing the most cancellations. However, as a Data Scientist, I would recommend using the 0.42 threshold instead, as it offers a more balanced trade-off between recall and precision, making it better suited for real-world decision-making where both false positives and false negatives carry a cost.
 
