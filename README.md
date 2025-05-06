@@ -255,9 +255,11 @@ The initial results showed an accuracy of 80.6%, a recall of 63.4%, and an F1-sc
 
 ---
 
-## Multicollinearity and Treat High P-values**
+## Multicollinearity and Treat High P-values  
 
-To improve model the multicollinearity was assessed using the Variance Inflation Factor (VIF). Several dummy variables, particularly within the market_segment_type feature, showed high VIF values, indicating strong linear dependencies. In parallel, backward elimination was applied using p-values from the logistic regression summary to remove statistically insignificant variables.   
+To improve the interpretability and stability of the logistic regression model, multicollinearity was assessed using the VIF. Most features showed acceptable VIF values below 5, indicating low multicollinearity.
+
+In parallel, **backward elimination** was applied using p-values from the logistic regression model, until all remaining predictors were statistically significant. This resulted in a refined set of variables strongly associated with cancellation risk.
 
 ---
 
