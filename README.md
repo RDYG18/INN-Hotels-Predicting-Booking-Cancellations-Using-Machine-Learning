@@ -16,8 +16,8 @@
   - [Final Logistic Model](#final-logistic-model)
   - [Threshold Optimization](#threshold-optimization)
   - [Model performance summary](#model-performance-summary)
-- [Evaluation and Optimization ](#evaluation-and-optimization)
-  - [Hyperparameter Tuning comparison](#hyperparameter-tuning-comparison)
+- [Decision Tree](#decision-tree)
+  - [Important features](#important-features)
   - [Final Model Evaluation on Test Set ](#final-model-evaluation-on-test-set)
   - [Future importances](#future-importances)
   - [Pipeline Evaluation](#pipeline-evaluation)
@@ -304,10 +304,11 @@ After evaluating different thresholds, the model with 0.37 achieved the highest 
   <img src="https://github.com/user-attachments/assets/d4cdf8da-92bf-496a-a052-42e52f125211" width="700"/>
 </div>
 
+---
 
 ## Decision Tree
 
-Before training the Decision Tree model, categorical features were, the dataset was preprocessed by applying **one-hot encoding** to categorical features (with drop_first=True) and splitting the data into training 70% and test 30% sets. Despite high performance on both sets, the significant gap between training and test results especially the near perfect metrics on the training set indicates **overfitting**. For this reason, we will apply pre-pruning to improve the model. 
+Before training the Decision Tree model, categorical features were, the dataset was preprocessed by applying **one-hot encoding** to categorical features and splitting the data into training 70% and test 30% sets. Despite high performance on both sets, the significant gap between training and test results especially the near perfect metrics on the training set indicates **overfitting**. For this reason, we will apply pre-pruning to improve the model. 
 
 
 <div style="display: flex; justify-content: center; gap: 20px;">
@@ -320,7 +321,7 @@ Before training the Decision Tree model, categorical features were, the dataset 
 
 ---
 
-**Important features**
+## Important features
 
 Before applying pre-pruning techniques to reduce overfitting, we analyzed the relative importance of features in the unpruned Decision Tree model. The most influential variables in predicting booking cancellations were:
 
