@@ -18,9 +18,8 @@
   - [Model performance summary](#model-performance-summary)
 - [Decision Tree](#decision-tree)
   - [Important features](#important-features)
-  - [Final Model Evaluation on Test Set ](#final-model-evaluation-on-test-set)
-  - [Future importances](#future-importances)
-  - [Pipeline Evaluation](#pipeline-evaluation)
+  - [Pruning the tree](#pruning-the-tree)
+  - [Final Feature Importances Summary](#final-feature-importances-summary)
 - [Insights](#insights)
 - [Business Recommendations](#business-recommendations)
 - [Assumptions & Limitations](#assumptions--limitations)
@@ -339,20 +338,17 @@ Before applying pre-pruning techniques to reduce overfitting, we analyzed the re
 
 ---
 
-## Pruning the tree**
+## Pruning the tree
 
 **Model Optimization**
 
-To address overfitting in the initial Decision Tree model, two pruning techniques were applied:
+To reduce overfitting in the initial Decision Tree model, two pruning strategies were applied:
 
-**Pre-Pruning (Grid Search):**
-A hyperparameter tuning process using GridSearchCV was conducted over parameters such as max_depth, min_samples_split, and min_samples_leaf. The best configuration (e.g., max_depth=6) improved generalization, resulting in a test F1-score of 0.75.
+- **Pre-Pruning (Grid Search):** We tuned hyperparameters like `max_depth`, `min_samples_split`, and `min_samples_leaf` using `GridSearchCV`. The best configuration (e.g., `max_depth = 6`) improved test performance, achieving an **F1-score of 0.75**.
 
-**Post-Pruning (Cost-Complexity Pruning):**
-A post-pruning strategy was implemented by analyzing the trade-off between tree complexity and performance using the cost-complexity parameter ccp_alpha. The optimal value (ccp_alpha ≈ 0.00013) was selected based on the highest test F1-score (0.808) and recall (0.853), leading to a more robust and simplified model.
+- **Post-Pruning (Cost-Complexity Pruning):** We applied pruning based on the `ccp_alpha` parameter to simplify the tree while maintaining performance. The optimal value (`ccp_alpha ≈ 0.00013`) resulted in a **higher F1-score (0.808)** and **recall (0.853)** on the test set.
 
-
-**Post-pruning** proved to be the best option, delivering the strongest trade-off between model complexity and predictive power. It outperformed both the original and pre-pruned versions by offering improved generalization and higher recall—crucial for cancellation prediction scenarios where false negatives carry significant cost.
+**Post-pruning delivered the best results**, offering a better balance between model complexity and accuracy. It outperformed both the original and pre-pruned models, especially in terms of **recall**, which is critical for identifying booking cancellations early.
 
 
 <div align="center">
@@ -361,17 +357,17 @@ A post-pruning strategy was implemented by analyzing the trade-off between tree 
 
 ---
 
-**Final Feature Importances Summary**
+## Final Feature Importances Summary 
 
 At the end of the Decision Tree modeling process, the most influential features for predicting booking cancellations were:
 
-- Lead time, by far the most important predictor, suggests that bookings made well in advance are more prone to cancellation.
+- **Lead time**, by far the most important predictor, suggests that bookings made well in advance are more prone to cancellation.
 
-- Market segment type (Online) and average price per room also played key roles, highlighting customer profile and pricing sensitivity.
+- **Market segment type (Online)** and **average price per room** also played key roles, highlighting customer profile and pricing sensitivity.
 
-- Other relevant variables included the number of special requests, arrival month, and booking timing features (arrival date, week/weekend nights).
+- Other relevant variables included the **number of special requests, arrival month**, and **booking timing features** (arrival date, week/weekend nights).
 
-This ranking provides valuable insight into which attributes are most critical in cancellation behavior, supporting both strategic pricing and customer targeting decisions.
+This provides insight into which attributes are most critical in cancellation behavior, supporting both strategic pricing and customer targeting decisions.
 
 
 <div align="center">
@@ -380,72 +376,65 @@ This ranking provides valuable insight into which attributes are most critical i
 
 ## Insights   
 
-**Lead time** remains a strong predictor of cancellations: each additional day increases the odds of cancellation by 1.6% (OR = 1.0158). This is also supported by the Decision Tree model, where lead time shows a feature importance of ≈ 0.39.
+- **Lead time** (days between booking and arrival) is a **strong predictor of cancellations**. For every additional day in advance that a booking is made, the chance of cancellation increases by about **1.6%**. Bookings made far in advance especially **beyond 60 days** are more likely to be canceled.
 
-**Higher room prices** are linked to slightly higher cancellation risk: for every €10 increase, the odds of cancellation rise by ~2.05%, possibly reflecting greater hesitation with premium bookings.
+- **Higher room prices** are associated with a small increase in cancellations. On average, for every **€10** increase in the room rate, the chance of cancellation rises by about **2%**.
 
-**Online bookings** show significantly higher cancellation risk: their odds of cancellation are 435% higher than offline bookings (OR = 5.35), making this the most impactful categorical feature in both models.
+- **Online bookings** are much more likely to be canceled than offline ones. In fact, bookings made online are about **five times more likely** to be canceled, making this the most influential customer segment in the model.
 
-**Special requests** are a strong signal of booking commitment: each additional request reduces the odds of cancellation by 76% (OR = 0.2385). Guests with 2 or more requests rarely cancel, reflecting higher engagement.
+- **Special requests** strongly reduce the likelihood of cancellation. Each additional request **lowers the chance by about 76%**, and guests with two or more requests almost **never cancel**.
 
-**Month of booking** influences reliability: with each later month, the odds of cancellation drop by ~6% (OR = 0.9399). Cancellations are more common early in the year, January to March, with a median probability of cancellation during the months April to June, and less likely from October to December, suggesting stronger commitment in late-season travel.
+- **Month of arrival**. Cancellations are more frequent from **January to March**, while bookings for **October to December** are the most stable, showing much lower cancellation rates around **6% lower** with each later month.
 
-Repeated Guests Are Still the Most Reliable Segment
-Repeat customers had ~89% lower odds of cancelling compared to first-time guests (OR = 0.1093), highlighting the importance of loyalty and familiarity with the brand.
+- **Repeat guests** are highly reliable, with nearly **89%** fewer cancellations compared to first time customers. This highlights the importance of **building guest loyalty**.
 
 
  
-## Recomendations
+## Business Recommendations
 
-Reconfirm or Add Deposits to Long-Lead Bookings
-Bookings made more than 90 days in advance should trigger automated reconfirmation emails or require partial deposits. These bookings carry significantly higher cancellation risk and benefit from early engagement strategies to reduce dropouts and improve inventory planning.
+**Reconfirm or Add Deposits** for Long-Lead Bookings
+Bookings made more than **90 days in advance** have a significantly higher cancellation risk.
+To reduce dropouts and improve inventory planning:
 
-✅ Tighten Policies for Online Bookings
-Given their 435% higher cancellation risk, consider the following measures for online reservations:
+- Send **automated reconfirmation emails** closer to arrival.
 
-Non-refundable incentives, such as discounts or added amenities
+- Require **partial deposits** for high risk advance bookings.
 
-Stricter free cancellation windows, e.g., no refunds within 7 days
+---
 
-Booking flow nudges or reminders to reinforce intent during the purchase journey
+**Tighten Policies for Online Bookings**
+Online bookings are about **5 times more likely to be canceled** than offline ones. Consider:
 
-✅ Use Engagement Signals (Special Requests) to Flag Reliable Guests
-Guests who make two or more special requests demonstrate higher commitment and lower cancellation rates. Use this as a behavioral signal to:
+- Offering **non refundable discounts** or added perks.
 
-Offer them flexible or premium policy options
+- Limiting **free cancellation to 7+ days before arrival**.
 
-Adjust overbooking buffers downward for such bookings
+- Adding **reminders or nudges** during the booking process to reinforce intent.
 
-✅ Identify High-Risk Price-Only Bookings
-Bookings that are above average in price but lack engagement (no special requests, no loyalty status) show a ~30% higher chance of cancellation. These should be:
+---
 
-Flagged as high risk
+**Use Special Requests to Flag Reliable Guests**
+Guests with **2 or more special requests** rarely cancel and show high engagement. Use this behavior to:
 
-Monitored closely
+- Offer them **flexible cancellation policies** or upgrade options.
 
-Consider follow-up calls or confirmation messages to verify intent
+- **Reduce overbooking buffers** for these low risk reservations.
 
-✅ Promote and Protect Repeat Customers
-Guests with previous stays are statistically far less likely to cancel. Prioritize this group by:
+---
 
-Offering early access, exclusive discounts, or personalized perks
+**Promote and Protect Repeat Guests**
+Repeat customers are **89% less likely to cancel** compared to first time guests. Strengthen this segment by:
 
-Encouraging direct bookings via loyalty incentives to reduce OTA dependency
+- Offering **exclusive discounts** or early access.
 
-✅ Incorporate Seasonal Patterns from Arrival Month
-Since cancellations are more common for check-ins in January–March, and drop significantly between October–December, consider:
+- Encouraging **direct bookings** through loyalty perks to reduce OTA dependence.
 
-Applying stricter cancellation policies or deposits for early-year bookings
+---
 
-Running promotions and retention campaigns during Q4 to lock in high-intent travelers
+**Identify High-Risk Bookings with No Engagement**
+High price bookings without special requests or loyalty status are about **30% more likely to be canceled**. 
+These should be:
 
-Segmenting guests by arrival month to inform overbooking strategies and marketing timing
+- **Flagged as high risk** in the booking system.
 
-✅ Apply Cancellation Predictions to Operations
-With a recall score of 0.844, the post-pruned Decision Tree model can anticipate most cancellations. Integrate it into hotel operations to:
-
-Dynamically manage overbooking
-
-Optimize staffing in front desk and housekeeping
-
-Reduce revenue loss from unanticipated no-shows
+- Monitored with **confirmation emails or follow up calls** to verify intent.
