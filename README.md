@@ -444,6 +444,10 @@ These should be:
 
 ## Assumptions & Limitations
 
+**Assumptions**
 
+Cancellations are binary and final: The dataset assumes that once a booking is marked as canceled, it remains canceled. No partial or rebooked scenarios were included.
 
+**Booking channel grouping**: Segments such as Corporate, Complementary, and Aviation were grouped under Offline based on booking characteristics and volume, assuming they reflect direct or negotiated channels rather than online platforms.
 
+**Outliers reflect real behavior**: Except for unrealistic values, outliers were retained under the assumption that they represent legitimate, though rare, guest behavior. Since we do not have access to internal business rules, booking policies, or operational exceptions from the INN Hotels chain, we assume these extreme values could be valid in certain scenarios. Without further context, we chose not to discard them to preserve potentially meaningful variation in the data.
