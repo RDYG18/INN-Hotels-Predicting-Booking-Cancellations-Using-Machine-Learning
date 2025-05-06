@@ -206,7 +206,9 @@ Seasonality appears to influence booking reliability. Bookings in peak vacation 
 
 ## Data Preprocessing
 
-**
+**Merging Low-Volume Market Segments**
+
+To streamline the analysis and improve model performance, the **market_segment_type** variable was simplified by grouping the **Corporate, Complementary**, and **Aviation** segments into a single category labeled Offline. These segments represented a very small portion of the dataset, and combining them with the existing Offline group helped reduce sparsity, simplify interpretation, and ensure more balanced comparisons across segments.
 
 **Outlier Check**
 
