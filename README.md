@@ -212,11 +212,11 @@ To streamline the analysis and improve model performance, the **market_segment_t
 
 **Outlier Check**
 
-We chose not to remove or cap these outliers, as they carry meaningful signals about customer behavior and hotel operations.An exception was made for the **no_of_adults** variable. Based on business logic, a reservation should include at least one adult. Therefore, values of 0 were considered unrealistic and were replaced with the mode to reflect more plausible scenarios.
+I chose not to treat these outliers, as they carry meaningful information about customer behavior and hotel operations.An exception was made for the **no_of_adults** variable. Based on business logic, a reservation should include at least one adult. Therefore, values of 0 were considered unrealistic and were replaced with the mode to reflect more plausible scenarios.
 
-Another exception was applied to the **lead_time** variable. Based on industry standards and observed data patterns, bookings made more than 10 months in advance (300 days) are rare typically representing less than 1% of total reservations. I follow this approach to limit the influence of extreme values. 
+Another treatment was applied to the **lead_time** variable. Based on industry standards, bookings made more than 10 months in advance (300 days) are rare typically representing less than 1% of total reservations. I follow this approach to limit the influence of extreme values. 
 
-Retaining the remaining outliers allows the model to better capture real world booking behavior. Additionally, models such as Decision Trees are inherently robust to outliers, making them well-suited to handle this type of variability without distortion.For these reasons, outliers were preserved as part of the training data.
+Retaining the remaining outliers allows the model to better capture real world booking behavior. Additionally, models such as Decision Trees are inherently robust to outliers, making them well suited to handle this type of variability without distortion.For these reasons, outliers were preserved as part of the training data.
 
 
 <p align="center">
@@ -249,7 +249,7 @@ The initial results showed an accuracy of 80.6%, a recall of 63.4%, and an F1-sc
 
   <img src="https://github.com/user-attachments/assets/33beaf2e-8be4-4183-8426-d6ef8c6989d3" width="500"/>
   
-  <img src="https://github.com/user-attachments/assets/c7bbbf73-f825-4de7-8302-02b012826cea" width="300"/>
+  <img src="https://github.com/user-attachments/assets/8f0b54fd-364c-49a3-ad64-8bb916e9a39b" width="300"/>
   
 </div>
 
