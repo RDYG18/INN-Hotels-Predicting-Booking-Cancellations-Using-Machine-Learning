@@ -288,32 +288,34 @@ To make the logistic regression results more interpretable, the model coefficien
 
 To improve the model's ability to detect cancellations, we performed threshold tuning using the ROC Curve and Precision-Recall Curve. While logistic regression defaults to a threshold of 0.5, this value may not be optimal for imbalanced datasets or when recall is a priority.
 
-The ROC Curve (AUC = 0.86) revealed an optimal threshold around 0.37, improving the true positive rate with minimal increase in false positives. The Precision-Recall Curve confirmed this tradeoff, highlighting another suitable threshold at 0.42, where recall was maximized without severely compromising precision.
+The ROC Curve (AUC = 0.86) revealed an optimal threshold around **0.37**, improving the true positive rate with minimal increase in false positives. The Precision-Recall Curve confirmed this tradeoff, highlighting another suitable threshold at **0.42**, where recall was maximized without severely compromising precision.
 
-Adjusting the threshold to 0.37–0.42 significantly improved recall, our key metric for anticipating cancellations, supporting the hotel’s goal of minimizing revenue loss from no-shows.
+Adjusting the threshold to **0.37–0.42 significantly improved recall**, our key metric for anticipating cancellations, supporting the hotel’s goal of minimizing revenue loss from no-shows.
 
 </div>
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/136a04e7-ec1d-43fd-8631-1d722240862e" width="400"/>
-  <img src="https://github.com/user-attachments/assets/69bb651f-9a8e-49a1-a236-cf986250c75f" width="400"/>
+  <img src="https://github.com/user-attachments/assets/1503398b-f828-4d9c-b885-33515d4c7b80" width="400"/>
 </p>
 
 ## Model performance summary
 
-After evaluating different thresholds, the model with 0.37 achieved the highest recall in the test performance, making it ideal for capturing the most cancellations. However, as a Data Scientist, I would recommend using the 0.42 threshold instead, as it offers a more balanced trade-off between recall and precision, making it better suited for real-world decision-making where both false positives and false negatives carry a cost.
+<div align="justify">
+  
+After evaluating different thresholds, the model with **0.37** achieved the highest recall in the test performance, making it ideal for capturing the most cancellations. However, as a Data Scientist, I would recommend using the **0.42 threshold instead**, as it offers a more balanced trade off between recall and precision, making it better suited for real world decision making where both false positives and false negatives carry a cost.
 
-
+</div>
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/d4cdf8da-92bf-496a-a052-42e52f125211" width="700"/>
+  <img src="https://github.com/user-attachments/assets/e15c1f3a-4f66-49d7-baa3-63e4211dbe5b" width="700"/>
 </div>
 
 ---
 
 ## Decision Tree
 
-Before training the Decision Tree model, categorical features were, the dataset was preprocessed by applying **one-hot encoding** to categorical features and splitting the data into training 70% and test 30% sets. Despite high performance on both sets, the significant gap between training and test results especially the near perfect metrics on the training set indicates **overfitting**. For this reason, we will apply pre-pruning to improve the model. 
+Before training the Decision Tree model, categorical features were, the dataset was preprocessed by applying **one-hot encoding** to categorical features and splitting the data into training 70% and test 30% sets. Despite high performance on both sets, the significant gap between training and test results especially the near perfect metrics on the training set indicates **overfitting**. For this reason, we will apply **pre-pruning** and **post-pruning** to improve the model. 
 
 
 <div style="display: flex; justify-content: center; gap: 20px;">
