@@ -23,7 +23,6 @@
 - [Insights](#insights)
 - [Business Recommendations](#business-recommendations)
 - [Assumptions & Limitations](#assumptions--limitations)
-Model performance summary
 
 ## Project Background 
 
@@ -206,6 +205,8 @@ Seasonality appears to influence booking reliability. Bookings in peak vacation 
 ---
 
 ## Data Preprocessing
+
+**
 
 **Outlier Check**
 
@@ -438,3 +439,9 @@ These should be:
 - **Flagged as high risk** in the booking system.
 
 - Monitored with **confirmation emails or follow up calls** to verify intent.
+
+## Assumptions & Limitations
+
+
+
+
