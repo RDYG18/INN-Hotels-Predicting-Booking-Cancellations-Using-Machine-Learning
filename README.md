@@ -116,7 +116,7 @@ The variable indicates the source channel through which the booking was made.
 Given the dominance of online bookings, this channel could play a critical role in cancellation patterns.
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/024d62a5-0534-4c02-81bc-57745b315f0b" width="500"/>
+  <img src="https://github.com/user-attachments/assets/b0ed055e-4804-456f-9023-ba0f1aa4d201" width="500"/>
 </div>
 
 ---
@@ -212,15 +212,16 @@ To streamline the analysis and improve model performance, the **market_segment_t
 
 **Outlier Check**
 
-We chose not to remove or cap these outliers, as they carry meaningful signals about customer behavior and hotel operations.An exception was made for the no_of_adults variable. Based on business logic, a reservation should include at least one adult. Therefore, values of 0 were considered unrealistic and were replaced with the mode to reflect more plausible scenarios.
+We chose not to remove or cap these outliers, as they carry meaningful signals about customer behavior and hotel operations.An exception was made for the **no_of_adults** variable. Based on business logic, a reservation should include at least one adult. Therefore, values of 0 were considered unrealistic and were replaced with the mode to reflect more plausible scenarios.
 
-Retaining the remaining outliers allows the model to better capture real-world booking behavior. Additionally, models such as Decision Trees are inherently robust to outliers, making them well-suited to handle this type of variability without distortion.For these reasons, outliers were preserved as part of the training data.
+Another exception was applied to the **lead_time** variable. Based on industry standards and observed data patterns, bookings made more than 10 months in advance (300 days) are rare typically representing less than 1% of total reservations. I follow this approach to limit the influence of extreme values. 
 
-<div style="display: flex; justify-content: center; gap: 20px;">
+Retaining the remaining outliers allows the model to better capture real world booking behavior. Additionally, models such as Decision Trees are inherently robust to outliers, making them well-suited to handle this type of variability without distortion.For these reasons, outliers were preserved as part of the training data.
 
+
+<p align="center">
+  
   <img src="https://github.com/user-attachments/assets/4f263720-86ef-4bc5-a6da-a206b068dd24" width="500"/>
-
-  <img src="https://github.com/user-attachments/assets/ad5f63a6-fa8c-4cfe-8b97-1a4300efe337" width="400"/>
 
 </div>
 
