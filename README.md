@@ -206,7 +206,7 @@ Seasonality appears to influence booking reliability. Bookings in peak vacation 
 
 ## Data Preprocessing
 
-**Merging Low-Volume Market Segments**
+**Merging Low Volume Market Segments**
 
 To streamline the analysis and improve model performance, the **market_segment_type** variable was simplified by grouping the **Corporate, Complementary**, and **Aviation** segments into a single category labeled Offline. These segments represented a very small portion of the dataset, and combining them with the existing Offline group helped reduce sparsity, simplify interpretation, and ensure more balanced comparisons across segments.
 
@@ -230,7 +230,7 @@ Retaining the remaining outliers allows the model to better capture real-world b
 
 **Data Preparation**
 
-Before training the logistic regression model, the dataset was preprocessed by applying **one-hot encoding** to categorical features (with drop_first=True) and splitting the data into training 70% and test 30% sets. The target variable was **booking_status** (1 = Canceled, 0 = Not Canceled). The class distribution remained consistent across both sets 33% cancellations, ensuring a balanced and representative split for modeling.
+Before training the logistic regression model, the dataset was preprocessed by applying **one-hot encoding** to categorical features and splitting the data into training 70% and test 30% sets. The target variable was **booking_status** (1 = Canceled, 0 = Not Canceled). The class distribution remained consistent across both sets 33% cancellations, ensuring a balanced and representative split for modeling.
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/b086ad68-b04d-4e55-81e0-6e10a744640a" width="300"/>
