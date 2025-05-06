@@ -230,7 +230,9 @@ Retaining the remaining outliers allows the model to better capture real-world b
 
 **Data Preparation**
 
-Before training the logistic regression model, the dataset was preprocessed by applying **one-hot encoding** to categorical features and splitting the data into training 70% and test 30% sets. The target variable was **booking_status** (1 = Canceled, 0 = Not Canceled). The class distribution remained consistent across both sets 33% cancellations, ensuring a balanced and representative split for modeling.
+Before training the logistic regression model, the dataset was preprocessed by applying one-hot encoding to categorical features and then split into a **70% training** and **30% test** set. The target variable was booking_status, where **1 = Canceled** and **0 = Not Canceled**.
+
+The class distribution was consistent across both sets, with approximately **33% canceled bookings** and **67% non canceled bookings**. While not fully balanced, the dataset does not present a severe imbalance either.
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/b086ad68-b04d-4e55-81e0-6e10a744640a" width="300"/>
@@ -254,7 +256,7 @@ The initial results showed an accuracy of 80.6%, a recall of 63.4%, and an F1-sc
 
 ## Multicollinearity and Treat High P-values**
 
-To improve model the multicollinearity was assessed using the Variance Inflation Factor (VIF). Several dummy variables, particularly within the market_segment_type feature, showed high VIF values (above 60), indicating strong linear dependencies. In parallel, backward elimination was applied using p-values from the logistic regression summary to remove statistically insignificant variables (p > 0.05). This iterative process reduced the feature set to only those with meaningful contribution to the model, resolving multicollinearity and improving overall model.  
+To improve model the multicollinearity was assessed using the Variance Inflation Factor (VIF). Several dummy variables, particularly within the market_segment_type feature, showed high VIF values, indicating strong linear dependencies. In parallel, backward elimination was applied using p-values from the logistic regression summary to remove statistically insignificant variables.   
 
 ---
 
@@ -408,7 +410,8 @@ To reduce dropouts and improve inventory planning:
 ---
 
 **Tighten Policies for Online Bookings**
-Online bookings are about **5 times more likely to be canceled** than offline ones. Consider:
+Online bookings are about **5 times more likely to be canceled** than offline ones. 
+Consider:
 
 - Offering **non refundable discounts** or added perks.
 
@@ -419,7 +422,8 @@ Online bookings are about **5 times more likely to be canceled** than offline on
 ---
 
 **Use Special Requests to Flag Reliable Guests**
-Guests with **2 or more special requests** rarely cancel and show high engagement. Use this behavior to:
+Guests with **2 or more special requests** rarely cancel and show high engagement. 
+Use this behavior to:
 
 - Offer them **flexible cancellation policies** or upgrade options.
 
@@ -428,7 +432,8 @@ Guests with **2 or more special requests** rarely cancel and show high engagemen
 ---
 
 **Promote and Protect Repeat Guests**
-Repeat customers are **89% less likely to cancel** compared to first time guests. Strengthen this segment by:
+Repeat customers are **89% less likely to cancel** compared to first time guests. 
+Strengthen this segment by:
 
 - Offering **exclusive discounts** or early access.
 
@@ -450,8 +455,12 @@ These should be:
 
 **Assumptions**
 
+<div align="justify">
+
 **Cancellations are binary and final**: The dataset assumes that once a booking is marked as canceled, it remains canceled. No partial or rebooked scenarios were included.
 
 **Booking channel grouping**: Segments such as Corporate, Complementary, and Aviation were grouped under Offline based on booking characteristics and volume, assuming they reflect direct or negotiated channels rather than online platforms.
 
 **Outliers reflect real behavior**: Except for unrealistic values, outliers were retained under the assumption that they represent legitimate, though rare, guest behavior. Since we do not have access to internal business rules, booking policies, or operational exceptions from the INN Hotels chain, we assume these extreme values could be valid in certain scenarios. Without further context, we chose not to discard them to preserve potentially meaningful variation in the data.
+
+</div>
