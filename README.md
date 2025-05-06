@@ -320,9 +320,9 @@ Before training the Decision Tree model, categorical features were, the dataset 
 
 <div style="display: flex; justify-content: center; gap: 20px;">
 
-  <img src="https://github.com/user-attachments/assets/09aca7de-fc22-4af1-9873-ad8aec26236a" width="400"/>
+  <img src="https://github.com/user-attachments/assets/9f7f7a16-0cd1-4dfc-a220-4c61da795e32" width="400"/>
 
-  <img src="https://github.com/user-attachments/assets/76fbf5ed-f49c-4dd9-97dc-be2e2a2d5a4c" width="400"/>
+  <img src="https://github.com/user-attachments/assets/8d790498-c1e2-4d3b-84d3-07a2129ca786" width="400"/>
 
 </div>
 
@@ -338,10 +338,10 @@ Before applying pre-pruning techniques to reduce overfitting, we analyzed the re
 
 - **market_segment_type_Online**: Online bookings showed a high contribution, consistent with trends seen in earlier exploratory analysis.
 
-- **arrival_date** and **no_of_special_requests** also contributed moderately to the model's decisions.
+- **arrival_month** and **no_of_special_requests** also contributed moderately to the model's decisions.
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/472b2f50-d371-4828-8d5f-4ce33a080fcb" width="500"/>
+  <img src="https://github.com/user-attachments/assets/5a8c3977-35dc-45e4-8171-a40c4b0011fc" width="500"/>
 </div>
 
 ---
@@ -352,15 +352,14 @@ Before applying pre-pruning techniques to reduce overfitting, we analyzed the re
 
 To reduce overfitting in the initial Decision Tree model, two pruning strategies were applied:
 
-- **Pre-Pruning (Grid Search):** We tuned hyperparameters like `max_depth`, `min_samples_split`, and `min_samples_leaf` using `GridSearchCV`. The best configuration (e.g., `max_depth = 6`) improved test performance, achieving an **F1-score of 0.75**.
+- **Pre-Pruning:** Hyperparameter tuning improved generalization, resulting in a test **F1-score of 75%**.
+  
+- **Post-Pruning:** Applying cost-complexity pruning led to a **higher F1-score of 80%** and **recall of 85%** on the test set.
 
-- **Post-Pruning (Cost-Complexity Pruning):** We applied pruning based on the `ccp_alpha` parameter to simplify the tree while maintaining performance. The optimal value (`ccp_alpha ≈ 0.00013`) resulted in a **higher F1-score (0.808)** and **recall (0.853)** on the test set.
-
-**Post-pruning delivered the best results**, offering a better balance between model complexity and accuracy. It outperformed both the original and pre-pruned models, especially in terms of **recall**, which is critical for identifying booking cancellations early.
-
+**Post-pruning delivered the best results**, offering the strongest trade-off between model simplicity and predictive power. It outperformed both the original and pre-pruned models, particularly in **recall**, which is critical for anticipating booking cancellations early and reducing revenue loss.
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/b9aade7b-dea2-44a2-a269-21981223f330" width="500"/>
+  <img src="https://github.com/user-attachments/assets/dd89369f-a7e3-47f5-84c3-9749ad91c732" width="500"/>
 </div>
 
 ---
@@ -371,32 +370,31 @@ At the end of the Decision Tree modeling process, the most influential features 
 
 - **Lead time**, by far the most important predictor, suggests that bookings made well in advance are more prone to cancellation.
 
-- **Market segment type (Online)** and **average price per room** also played key roles, highlighting customer profile and pricing sensitivity.
+- **Average price per room** and **Market segment type (Online)** also played key roles, highlighting customer profile and pricing sensitivity.
 
-- Other relevant variables included the **number of special requests, arrival month**, and **booking timing features** (arrival date, week/weekend nights).
+- Other relevant variables included the **number of special requests, arrival month**, and **booking timing features** (week/weekend nights).
 
-This provides insight into which attributes are most critical in cancellation behavior, supporting both strategic pricing and customer targeting decisions.
-
+By analyzing these features, we reveal the key drivers of cancellation behavior supporting Revenue Management and Guest Services in refining pricing strategies and enhancing guest targeting efforts.
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/6e5eb3ba-5c7c-455c-8d6b-e144221174d8" width="500"/>
+  <img src="https://github.com/user-attachments/assets/6f12b781-762e-4409-ae38-57f8a54f6ba2" width="500"/>
 </div>
 
 ---
 
 ## Insights   
 
-- **Lead time** (days between booking and arrival) is a **strong predictor of cancellations**. For every additional day in advance that a booking is made, the chance of cancellation increases by about **1.6%**. Bookings made far in advance especially **beyond 60 days** are more likely to be canceled.
+- **Lead time** (days between booking and arrival) is a **strong predictor of cancellations**. For every additional day in advance that a booking is made, the chance of cancellation increases by about **1.64%**. Bookings made far in advance especially **beyond 60 days** are more likely to be canceled.
 
-- **Higher room prices** are associated with a small increase in cancellations. On average, for every **€10** increase in the room rate, the chance of cancellation rises by about **2%**.
+- **Higher room prices** are associated with a small increase in cancellations. On average, for every **€10** increase in the room rate, the chance of cancellation rises by about **2.07%**.
 
 - **Online bookings** are much more likely to be canceled than offline ones. In fact, bookings made online are about **five times more likely** to be canceled, making this the most influential customer segment in the model.
 
-- **Special requests** strongly reduce the likelihood of cancellation. Each additional request **lowers the chance by about 76%**, and guests with two or more requests almost **never cancel**.
+- **Special requests** strongly reduce the likelihood of cancellation. Each additional request **lowers the chance by about 76.17%**, and guests with two or more requests almost **never cancel**.
 
 - **Month of arrival**. Cancellations are more frequent from **January to March**, while bookings for **October to December** are the most stable, showing much lower cancellation rates around **6% lower** with each later month.
 
-- **Repeat guests** are highly reliable, with nearly **89%** fewer cancellations compared to first time customers. This highlights the importance of **building guest loyalty**.
+- **Repeat guests** are highly reliable, with nearly **87.63%** fewer cancellations compared to first time customers. This highlights the importance of **building guest loyalty**.
 
 ---
  
