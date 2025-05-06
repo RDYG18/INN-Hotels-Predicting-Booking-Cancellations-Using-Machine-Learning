@@ -1,4 +1,4 @@
-# INN Hotels – Predicting Booking Cancellations
+#  Hotel Booking Cancellation Prediction
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/fa0b7553-7901-482a-8b84-598e7a3201fb" width="500"/>
