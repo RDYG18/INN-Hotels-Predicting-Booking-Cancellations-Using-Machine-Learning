@@ -243,11 +243,11 @@ The class distribution was consistent across both sets, with approximately **33%
 
 ## Logistic Regression Model
 
-The initial results showed an accuracy of 80.6%, a recall of 63.4%, and an F1-score of 68.3% on the training set. While the model demonstrated solid performance, the presence of multicollinearity and high p-values in several features suggested the need of treatment. 
+The initial results showed an **accuracy of 80.1%**, a **precision of 73%**, a **recall of 62.6%**, and an **F1-score of 67.4%** on the training set. While the model demonstrated solid performance, the presence of multicollinearity and high p-values in several features suggested the need of treatment. 
 
 <div style="display: flex; justify-content: center; gap: 20px;">
 
-  <img src="https://github.com/user-attachments/assets/33beaf2e-8be4-4183-8426-d6ef8c6989d3" width="500"/>
+  <img src="https://github.com/user-attachments/assets/8e90564a-5c2a-4293-8e68-393f78ce3ecb" width="500"/>
   
   <img src="https://github.com/user-attachments/assets/8f0b54fd-364c-49a3-ad64-8bb916e9a39b" width="300"/>
   
@@ -265,17 +265,15 @@ In parallel, **backward elimination** was applied using p-values from the logist
 
 ## Final Logistic Model
 
-After resolving multicollinearity and removing statistically insignificant features based on p-values, a new logistic regression model was trained using the reduced set of predictors.The model achieved a accuracy of 80.57%, precision 73.94%, recall 63.33% and F1-Score of 68.23%.
+After resolving multicollinearity and removing statistically insignificant features based on p-values, a new logistic regression model was trained using the reduced set of predictors.The model achieved a **accuracy of 80%**, **precision of 73%**, **recall 63%** and **F1-Score of 67.38%**.
 
-<div style="display: flex; justify-content: center; gap: 20px;">
-
-  <img src="https://github.com/user-attachments/assets/bab10a2a-542c-4571-8429-831db17b5991" width="500"/>
-
-  <img src="https://github.com/user-attachments/assets/e8bcf8e2-e762-49d6-934a-d1153991cbfb" width="350"/>
+<p align="center">
+  
+  <img src="https://github.com/user-attachments/assets/353c5e3a-98fe-4e5c-bc9a-12f0240d3eb2" width="350"/>
 
 </div>
 
-
+---
 
 **Coefficients to Odds**
 
