@@ -377,6 +377,8 @@ This provides insight into which attributes are most critical in cancellation be
   <img src="https://github.com/user-attachments/assets/6e5eb3ba-5c7c-455c-8d6b-e144221174d8" width="500"/>
 </div>
 
+---
+
 ## Insights   
 
 - **Lead time** (days between booking and arrival) is a **strong predictor of cancellations**. For every additional day in advance that a booking is made, the chance of cancellation increases by about **1.6%**. Bookings made far in advance especially **beyond 60 days** are more likely to be canceled.
@@ -391,7 +393,7 @@ This provides insight into which attributes are most critical in cancellation be
 
 - **Repeat guests** are highly reliable, with nearly **89%** fewer cancellations compared to first time customers. This highlights the importance of **building guest loyalty**.
 
-
+---
  
 ## Business Recommendations
 
@@ -442,11 +444,13 @@ These should be:
 
 - Monitored with **confirmation emails or follow up calls** to verify intent.
 
+---
+
 ## Assumptions & Limitations
 
 **Assumptions**
 
-Cancellations are binary and final: The dataset assumes that once a booking is marked as canceled, it remains canceled. No partial or rebooked scenarios were included.
+**Cancellations are binary and final**: The dataset assumes that once a booking is marked as canceled, it remains canceled. No partial or rebooked scenarios were included.
 
 **Booking channel grouping**: Segments such as Corporate, Complementary, and Aviation were grouped under Offline based on booking characteristics and volume, assuming they reflect direct or negotiated channels rather than online platforms.
 
