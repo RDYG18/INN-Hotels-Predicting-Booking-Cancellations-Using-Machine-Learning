@@ -213,9 +213,20 @@ To streamline the analysis and improve model performance, the **market_segment_t
 
 **Outlier Check**
 
-I chose not to treat these outliers, as they carry meaningful information about customer behavior and hotel operations.An exception was made for the **no_of_adults** variable. Based on business logic, a reservation should include at least one adult. Therefore, values of 0 were considered unrealistic and were replaced with the mode to reflect more plausible scenarios.
+I chose not to treat these outliers, as they carry meaningful information about customer behavior and hotel operations.An exception was made for the **no_of_adults**, **lead_time** and **avg_price_per_room** variable. 
+Based on business logic:
 
-Another treatment was applied to the **lead_time** variable. Based on industry standards, bookings made more than 10 months in advance (300 days) are rare typically representing less than 1% of total reservations. I follow this approach to limit the influence of extreme values. 
+- **`no_of_adults`**:  
+  A hotel booking must include at least **one adult**. Entries with 0 adults were considered invalid and replaced with the mode of the variable to reflect more realistic scenarios.
+
+- **`lead_time`**:  
+  Bookings made more than **300 days in advance** are considered rare in the hospitality industry, typically accounting for less than 1% of reservations. These extreme values were capped at 300 to limit their influence.
+
+- **`avg_price_per_room`**:  
+  During univariate analysis, we observed that most prices were below €200. Using the IQR method, we calculated an upper whisker of **€179.55**.  
+  Bookings with prices **above €500** were treated as outliers and capped, as they were extremely rare and likely due to:
+  - Bulk or extended corporate bookings
+  - Data entry errors or anomalies
 
 Retaining the remaining outliers allows the model to better capture real world booking behavior. Additionally, models such as Decision Trees are inherently robust to outliers, making them well suited to handle this type of variability without distortion.For these reasons, outliers were preserved as part of the training data.
 
