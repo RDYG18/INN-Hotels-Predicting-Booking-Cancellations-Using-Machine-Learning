@@ -69,7 +69,7 @@ The dataset contains historical booking records from INN Hotels and is used to b
 - `repeated_guest`, `no_of_previous_cancellations`: Booking history  
 - `avg_price_per_room`: Room price (dynamic, in euros)  
 - `no_of_special_requests`: Number of custom requests  
-- `booking_status`: Target variable indicating cancellation (Yes/No)
+- `booking_status`: Target variable indicating cancellation (0 = Not canceled, 1 = Canceled)
 
 
 
